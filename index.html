@@ -1,42 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
     <title>To do list</title>
-</head>
+  </head>
 
-<body>
-    <header>
+  <body>
+    <div class="wrapper">
+      <header class="container">
         <h1>My ToDo List</h1>
         <p>day and date and time</p>
-    </header>
+      </header>
 
-    <div class="add-task">
-        <input name="add-" id="add-task" type="text" placeholder="Add a task">
+      <div class="input-field container">
+        <input name="add-" id="add-task" type="text" placeholder="Add a task" />
         <button id="add-task-btn">+</button>
         <button id="clear-input-field">x</button>
-
-    </div>
-    <div class="controls">
-        <h2>Tasks</h2> &nbsp;
+      </div>
+      <div class="controls container">
         <button class="hide" id="show-complete-btn">Show Completed Task</button>
         <button id="hide-complete-btn">Hide Completed Task</button>
+        <button id="clear-all-tasks">Remove all Tasks</button>
+      </div>
+      <div class="list container">
+        <ul id="to-do-list">
+          <li>task 1</li>
+          <li>task 2</li>
+        </ul>
+      </div>
     </div>
-    <div>
-        <ol id="to-do-list">
-            <li>task 1</li>
-            <li>task 2</li>
-        </ol>
-    </div>
 
-
-
-    <script src="script.js"></script>
     <!-- <script src="basic.js"></script> -->
-</body>
-
+  </body>
 </html>

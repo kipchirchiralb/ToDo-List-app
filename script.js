@@ -1,52 +1,57 @@
-const addTaskInput = document.querySelector("#add-task")
-const myList = document.querySelector("#to-do-list")
-const addTaskBtn = document.querySelector("#add-task-btn")
-const clearInputField = document.querySelector("#clear-input-field")
-const showCompleteBtn = document.querySelector("#show-complete-btn")
-const hideCompleteBtn = document.querySelector("#hide-complete-btn")
-
+const addTaskInput = document.querySelector("#add-task");
+const myList = document.querySelector("#to-do-list");
+const addTaskBtn = document.querySelector("#add-task-btn");
+const clearInputField = document.querySelector("#clear-input-field");
+const showCompleteBtn = document.querySelector("#show-complete-btn");
+const hideCompleteBtn = document.querySelector("#hide-complete-btn");
+const clearList = document.querySelector("clear-all-tasks");
 
 // adding a task to the task list and clearing the input field
-addTaskInput.addEventListener("keypress", function(e) {
-    console.log("smsm")
-    if (e.key === "Enter") {
-        addTaskToList()
-    }
-})
+addTaskInput.addEventListener("keypress", function (e) {
+  console.log("smsm");
+  if (e.key === "Enter") {
+    addTaskToList();
+  }
+});
 
-addTaskBtn.addEventListener("click", addTaskToList)
+addTaskBtn.addEventListener("click", addTaskToList);
 
-clearInputField.addEventListener("click", function(e) {
-    addTaskInput.value = ""
-})
+clearInputField.addEventListener("click", function (e) {
+  addTaskInput.value = "";
+});
+clearList.addEventListener("click", function (e) {
+  myList.innerHTML = "";
+});
 
 function addTaskToList() {
-    let text = addTaskInput.value
-        // if (text!=items[i]) - store items in local storage
-    let newItem = document.createElement("li")
-    let indicatorBtn = document.createElement("button")
-    indicatorBtn.textContent = ""
-    let textNode = document.createTextNode(text)
-    newItem.append(textNode)
-    newItem.appendChild(indicatorBtn)
-    myList.appendChild(newItem)
-    addTaskInput.value = ""
-
+  if (addTaskInput.value.length == 0) {
+    alert("Task field empty");
+  } else {
+    let text = addTaskInput.value;
+    // if (text!=items[i]) - store items in local storage
+    let newItem = document.createElement("li");
+    let indicatorBtn = document.createElement("button");
+    indicatorBtn.textContent = "";
+    let textNode = document.createTextNode(text);
+    newItem.append(textNode);
+    newItem.appendChild(indicatorBtn);
+    myList.appendChild(newItem);
+    addTaskInput.value = "";
+  }
 }
 
-
 // toggle between showing and hiding complete tasks
-showCompleteBtn.addEventListener("click", showCompleteTasks)
-hideCompleteBtn.addEventListener("click", hideCompleteTasks)
+showCompleteBtn.addEventListener("click", showCompleteTasks);
+hideCompleteBtn.addEventListener("click", hideCompleteTasks);
 
 function showCompleteTasks() {
-    hideCompleteBtn.classList.remove("hide")
-    showCompleteBtn.classList.add("hide")
+  hideCompleteBtn.classList.remove("hide");
+  showCompleteBtn.classList.add("hide");
 }
 
 function hideCompleteTasks() {
-    showCompleteBtn.classList.remove("hide")
-    hideCompleteBtn.classList.add("hide")
+  showCompleteBtn.classList.remove("hide");
+  hideCompleteBtn.classList.add("hide");
 }
 
 // function bindButtons(){
@@ -58,10 +63,10 @@ function hideCompleteTasks() {
 //       $this.addClass('selected').removeClass('disabled');
 
 //       switch ($this.attr('id')){
-//           case 'yes': 
+//           case 'yes':
 //               val = true;
 //               break;
-//           case 'no': 
+//           case 'no':
 //               val = false;
 //               break;
 //       }
