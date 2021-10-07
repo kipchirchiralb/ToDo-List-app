@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    display: grid;
+    justify-content: center;
+    background-color: rgb(6, 6, 63);
+    color: rgb(247, 235, 235);
+}
+
+header {
+    line-height: normal;
+}
+
+button {
+    background-color: transparent;
+    outline: none;
+    color: white;
+    border: 0;
+}
+
+.hide {
+    display: none;
+}
+
+.controls {
+    display: flex;
+}
