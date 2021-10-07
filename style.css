@@ -1,48 +1,71 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0 10px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 2px;
 }
 
 body {
-    display: grid;
-    justify-content: center;
-    background-color: rgb(6, 6, 63);
-    color: rgb(247, 235, 235);
+  display: grid;
+  justify-content: center;
+  background-color: rgb(6, 6, 63);
+  color: rgb(247, 235, 235);
 }
-
+.wrapper {
+  margin: o auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 350px;
+}
 header {
-    line-height: normal;
+  line-height: normal;
 }
 
 button {
-    background-color: transparent;
-    outline: none;
-    color: white;
-    border: 0;
-    font-size: 1.5rem;
+  background-color: transparent;
+  outline: none;
+  color: white;
+  border: 0;
+  font-size: 1.5rem;
+  min-height: 1rem;
+  min-width: 1rem;
 }
 
-input{
-    background-color: #fff;
-    color: #000;
-    height: 2rem;
+input {
+  background-color: #fff;
+  color: #000;
+  height: 2rem;
 }
-li{
-    list-style: none;
+li {
+  list-style: none;
+  max-width: 250px;
+  word-wrap: break-word;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .controls {
-    display: flex;
+  display: flex;
 }
-.controls button{
-    font-size: 1rem;
+.controls button {
+  font-size: 1rem;
 }
 
-.container{
-    margin-top: 1rem;
+.container {
+  position: relative;
+  margin-top: 1rem;
+}
+.unchecked-btn {
+  background-color: white;
+  position: absolute;
+  right: 10px;
+  margin-left: 20px;
+}
+.checked-btn {
+  background-color: green;
+  position: absolute;
+  right: 10px;
+  margin-left: 20px;
 }
