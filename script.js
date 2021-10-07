@@ -13,7 +13,6 @@ const clearList = document.querySelector("#clear-all-tasks");
 
 // adding a task to the task list and clearing the input field
 addTaskInput.addEventListener("keypress", function (e) {
-  console.log("smsm");
   if (e.key === "Enter") {
     addTaskToList();
   }
