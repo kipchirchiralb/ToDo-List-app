@@ -136,6 +136,15 @@
 
         const listItems = document.getElementsByTagName("li");
         let id = 1;
+
+        //always focus on newTaskInput field
+        newTaskInput.onblur = () => {
+            setTimeout(() => {
+                this.focus()
+            }, 10)
+        }
+
+
         //check if input field is not empty and listen for enter key to addd task
         newTaskInput.addEventListener("keyup", (e) => {
                 if (e.keyCode === 13 && inputValid()) {
