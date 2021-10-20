@@ -138,7 +138,6 @@
         let id = 1;
         //check if input field is not empty and listen for enter key to addd task
         newTaskInput.addEventListener("keyup", (e) => {
-                console.log(e.keyCode)
                 if (e.keyCode === 13 && inputValid()) {
                     addTask()
                 }
@@ -192,7 +191,6 @@
             const close = document.getElementsByClassName("close")
             for (i = 0; i < close.length; i++) {
                 close[i].onclick = function() {
-                    console.log("damn!")
                     const parentDiv = this.parentElement
                     parentDiv.style.display = "none"
                 }
