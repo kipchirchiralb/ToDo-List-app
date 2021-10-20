@@ -1,34 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <script defer src="script.js"></script>
     <title>To do list</title>
-  </head>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 2px;
+        }
+        
+        body {
+            display: grid;
+            justify-content: center;
+            background-color: rgb(6, 6, 63);
+            color: rgb(247, 235, 235);
+        }
+        
+        .wrapper {
+            margin: o auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 350px;
+        }
+        
+        header {
+            line-height: normal;
+        }
+        
+        .button {
+            background-color: transparent;
+            outline: none;
+            color: white;
+            border: 0;
+            font-size: 1.5rem;
+            min-height: 1rem;
+            min-width: 1rem;
+        }
+        
+        input {
+            background-color: #fff;
+            color: #000;
+            height: 2rem;
+        }
+        
+        li {
+            list-style: none;
+            word-wrap: break-word;
+        }
+        
+        li:hover {
+            background-color: rgb(27, 27, 77);
+        }
+        
+        .controls {
+            display: flex;
+        }
+        
+        .controls button {
+            font-size: 1rem;
+        }
+        
+        .container {
+            position: relative;
+            margin-top: 1rem;
+        }
+        
+        .close {
+            /* font-size: 1.5rem; */
+            position: absolute;
+            right: 10px;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            font-size: 2rem;
+            margin-top: -12px;
+        }
+        
+        ul li.checked {
+            background: #888;
+            color: #fff;
+            text-decoration: line-through;
+        }
+        /* Add a "checked" mark when clicked on */
+        
+        ul li.checked::before {
+            content: "";
+            position: absolute;
+            background-color: greenyellow;
+            border-color: #fff;
+            border-style: solid;
+            border-width: 0 2px 2px 0;
+            top: 10px;
+            left: 16px;
+            transform: rotate(45deg);
+            height: 15px;
+            width: 7px;
+        }
+    </style>
+</head>
 
-  <body>
+<body>
     <div class="wrapper">
-      <header class="container">
-        <h1>My ToDo List</h1>
-        <p></p>
-      </header>
+        <header class="container">
+            <h1>My ToDo List</h1>
+            <p></p>
+        </header>
 
-      <div class="input-field container">
-        <input name="add-" id="add-task" type="text" placeholder="Add a task" />
-        <button id="add-task-btn">+</button>
-        <button id="clear-input-field">x</button>
-      </div>
-      <div class="controls container">
-        <button class="hide" id="show-complete-btn">Show Completed Task</button>
-        <button id="hide-complete-btn">Hide Completed Task</button>
-        <button id="clear-all-tasks">Remove all Tasks</button>
-      </div>
-      <div class="list container">
-        <ul id="to-do-list"></ul>
-      </div>
+        <div class="input-field container">
+            <input name="add-task" id="add-task" type="text" placeholder="Add a task" />
+            <button id="add-task-btn" class="button">+</button>
+        </div>
+        <div class="controls container">
+            <button class="hide" id="show-complete-btn">Show Completed Task</button>
+            <button id="hide-complete-btn">Hide Completed Task</button>
+        </div>
+        <div class="list container">
+            <ul id="to-do-list">
+                <li>Learn DOM traversal</li>
+            </ul>
+        </div>
     </div>
-  </body>
+    <script>
+        const newTaskInput = document.querySelector("#add-task");
+        const addTaskBtn = document.querySelector("#add-task-btn");
+        const showCompleteBtn = document.querySelector("#show-complete-btn");
+        const hideCompleteBtn = document.querySelector("#hide-complete-btn");
+        const myList = document.querySelector("#to-do-list");
+
+        const listItems = document.getElementsByTagName("li");
+        let id = 1;
+        //check if input field is not empty and listen for enter key to addd task
+        newTaskInput.addEventListener("keyup", (e) => {
+                console.log(e.keyCode)
+                if (e.keyCode === 13 && inputValid()) {
+                    addTask()
+                }
+            })
+            //add task using a button
+        addTaskBtn.addEventListener("click", () => {
+                if (inputValid()) {
+                    addTask()
+                }
+            })
+            //add "close" button to each item in the list
+        for (let i = 0; i < listItems.length; i++) {
+            let span = document.createElement("span")
+            let text = document.createTextNode("\u00D7")
+            span.className = "close"
+            span.appendChild(text)
+            listItems[i].appendChild(span)
+        }
+
+        // click close button to hide current list item
+        const close = document.getElementsByClassName("close")
+        for (let i = 0; i < close.length; i++) {
+            close[i].onclick = function() {
+                const parentDiv = this.parentElement
+                parentDiv.style.display = "none"
+            }
+        }
+        //check items in the list and add strike through to indicate complete 
+
+        myList.addEventListener("click", function(e) {
+            if (e.target.tagName === "li") {
+                e.target.classList.toggle("checked")
+            }
+        }, false)
+
+
+        function addTask() {
+            const newTask = document.createElement("li")
+            const inputValue = newTaskInput.value
+            const txt = document.createTextNode(inputValue)
+            newTask.append(txt)
+            myList.append(newTask)
+            newTaskInput.value = ""
+
+            const span = document.createElement("span")
+            const text = document.createTextNode("\u00D7")
+            span.className = "close"
+            span.appendChild(text)
+            newTask.append(span)
+
+            const close = document.getElementsByClassName("close")
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function() {
+                    console.log("damn!")
+                    const parentDiv = this.parentElement
+                    parentDiv.style.display = "none"
+                }
+            }
+        }
+
+        function inputValid() {
+            return newTaskInput.value !== ""
+        }
+    </script>
+</body>
+
 </html>
